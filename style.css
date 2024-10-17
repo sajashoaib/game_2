@@ -1,0 +1,373 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.gameBackground,
+.questins-bg {
+  height: 100vh;
+  background-image: url("images/game2-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.gameBackground {
+  padding: 100px 0;
+}
+.logo {
+  width: 90%;
+  height: 40vh;
+  margin-bottom: 20px;
+  animation: move 2s ease-in-out infinite;
+}
+.logo-nav {
+  width: 160px;
+  height: 110px;
+  padding: 30px 20px 10px 20px;
+  animation: move 2s ease-in-out infinite;
+}
+.play-button,
+.question-btn {
+  font-family: "Roboto", sans-serif;
+  background-color: #e1aa03;
+  color: white;
+  border-radius: 15px;
+  border-top: 8px solid white;
+  border-left: 8px solid white;
+  text-decoration: none;
+  box-shadow: rgb(38, 57, 77) -16px -8px 30px -10px;
+  transition: all 0.3s ease;
+  font-weight: 900;
+  font-size: 70px;
+  padding: 5px 30px;
+}
+.question-btn1 {
+  font-size: 50px;
+}
+
+.play-button:hover {
+  transform: scale(1.05);
+  color: white;
+}
+
+.play-button:active {
+  transform: scale(1.02);
+  box-shadow: rgb(38, 57, 77) -16px -8px 30px -10px;
+}
+
+.word-space {
+  border-bottom: 5px solid #e1aa03;
+  display: inline-block;
+  width: 150px;
+  height: 30px;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
+  position: relative; /* تأكد من أن العنصر الأساسي يمتلك هذا */
+}
+
+.word-space span {
+  position: absolute; /* لجعل النص يظهر فوق الـ border */
+  left: 0;
+  top: -40px; /* المسافة بين النص والحد السفلي */
+  width: 100%; /* لضمان أن النص يتناسب مع عرض العنصر */
+  text-align: center; /* لتوسيط النص */
+  color: #000; /* لون النص */
+  font-weight: bold; /* يمكن تخصيصه حسب الرغبة */
+}
+
+.section {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.section.active {
+  display: block;
+}
+.img-page-2 {
+  height: 45vh;
+  animation: moveing 2s ease-in-out infinite;
+}
+.frame1,
+.frame2 {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  transform: translateX(-200%);
+  clip-path: polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%);
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+.animate-frame {
+  animation: frame 1s linear forwards;
+}
+
+.frame1 {
+  background-color: #ebb70e;
+  animation-delay: 0.25s;
+}
+
+.frame2 {
+  background-color: #9aea54;
+  animation-delay: 0.5s;
+}
+@keyframes frame {
+  0% {
+    transform: translateX(-200%);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      75% 50%,
+      100% 100%,
+      0 100%
+    ); /* Arrow shape */
+  }
+  100% {
+    transform: translateX(100%);
+    clip-path: polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%);
+  }
+}
+.drag-text,
+.question_1_text {
+  font-family: "Roboto", cursive;
+  font-size: 60px;
+  font-weight: 800;
+  color: #e1aa03;
+  -webkit-text-stroke: 1px#d5ed24;
+}
+.drag-text {
+  font-size: 30px;
+  text-align: center;
+  color: black;
+}
+.option {
+  background-color: #d5ed24;
+  color: black;
+  padding: 10px 30px;
+  box-shadow: rgb(38, 57, 77) -16px -8px 30px -10px;
+  font-size: 25px;
+  margin: -10px 10px;
+  border: none;
+  font-weight: 400;
+  border: 2px solid #e1aa03;
+  transition: transform 0.3s ease; /* إضافة انتقال سلس */
+}
+.option:hover {
+  transform: scale(1.05); /* تكبير العنصر عند التحويم */
+  background-color: #adc402;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); /* Move up */
+  }
+  100% {
+    transform: translateY(0); /* Move back down */
+  }
+}
+.confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 500px;
+  display: none;
+  animation: confettiAnimation 4s forwards;
+  pointer-events: none;
+}
+
+@keyframes confettiAnimation {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+.score {
+  font-family: "Roboto", cursive;
+  font-size: 30px;
+  font-weight: 800;
+  color: #ba8c02;
+  -webkit-text-stroke: 1px#d5ed24;
+  margin-bottom: 0;
+}
+@keyframes moveing {
+  0% {
+    transform: translateX(0); /* البداية */
+  }
+  50% {
+    transform: translateX(20px); /* التحرك لليمين */
+  }
+  100% {
+    transform: translateX(0); /* العودة إلى الوضع الأصلي */
+  }
+}
+.sentence-word {
+  background-color: #f7be14;
+  color: black;
+  padding: 10px 30px;
+  box-shadow: rgb(38, 57, 77) -16px -8px 30px -10px;
+  font-size: 25px;
+  margin: -10px 10px;
+  border: none;
+  font-weight: 400;
+  border: 2px solid #121211;
+  transition: transform 0.3s ease; /* إضافة انتقال سلس */
+}
+.sentence-word-container {
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.sentence-arranged-words {
+  border: 6px double black;
+  width: 100px;
+  font-size: 20px;
+  background-color: #e3f561;
+  padding: 30px 60px;
+}
+.sentence-arranged-words-container {
+  margin-top: 40px;
+}
+.headphone {
+  border-radius: 10px;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  background-color: #c6dd0b;
+  display: inline-block;
+  margin-top: 5px;
+}
+.img-part-2 {
+  height: 240px;
+  animation: moveing 2s ease-in-out infinite;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    width: 80%;
+    height: 30vh;
+    margin-bottom: 20px;
+    animation: move 2s ease-in-out infinite;
+  }
+  .play-button {
+    font-size: 30px;
+  }
+  .frame1,
+  .frame2 {
+    clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%);
+  }
+  .question_1_text {
+    font-size: 30px;
+    font-weight: 800;
+    color: #e1aa03;
+    -webkit-text-stroke: 1px#d5ed24;
+  }
+  .logo-nav {
+    width: 160px;
+    height: 140px;
+    padding: 30px 20px;
+    animation: move 2s ease-in-out infinite;
+  }
+
+  .img-page-2 {
+    max-height: 50vh;
+    max-width: 400px;
+  }
+  .option {
+    font-size: 15px;
+    padding: 5px 20px;
+  }
+  .option-btns {
+    margin: 30px 0;
+  }
+
+  .word-space span {
+    top: -15px; /* المسافة بين النص والحد السفلي */
+  }
+
+  .confetti {
+    width: 80%;
+    height: 250px;
+  }
+  #dragtext {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .answer {
+    width: 120px;
+    height: 30px;
+  }
+  .word {
+    font-size: 15px;
+    padding: 0px 10px;
+    transition: font-size 0.3s;
+    text-align: center;
+    background-color: white;
+    border-radius: 35px;
+  }
+  .answer-text {
+    width: 70%;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .sentence-arranged-words-container {
+    flex-wrap: wrap;
+  }
+
+  .sentence-word {
+    padding: 10px 20px;
+    box-shadow: rgb(38, 57, 77) -16px -8px 30px -10px;
+    font-size: 20px;
+  }
+  .sentence-arranged-words {
+    padding: 15px 40px;
+  }
+  .sentence-arranged-words-container {
+    margin-top: 60px;
+  }
+  .play-button,
+  .question-btn {
+    font-size: 30px;
+  }
+  .questins-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-part-2 {
+    height: 120px;
+    animation: moveing 2s ease-in-out infinite;
+  }
+}
